@@ -1,2 +1,5 @@
-# strings
-String tools.. generate random strings, remove diacritics
+# String tools
+
+- generate random strings from given character classes
+- remove diacritics from string
+- return Lorem ipsum text

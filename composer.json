@@ -1,0 +1,14 @@
+{
+    "name": "samius/strings",
+    "description": "String tools",
+    "require": {
+        "php": ">=7.1"
+    },
+    "version": "1.0",
+    "minimum-stability" : "stable",
+    "autoload": {
+        "psr-0": {
+            "Samius": "src/"
+        }
+    }
+}
