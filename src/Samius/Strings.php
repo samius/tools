@@ -69,4 +69,32 @@ class Strings
 
         return $res;
     }
+
+    public static function randomPassword($len = 8)
+    {
+        /* Programmed by Christian Haensel
+        ** christian@chftp.com
+        ** http://www.chftp.com
+        **
+        ** Exclusively published on weberdev.com.
+        ** If you like my scripts, please let me know or link to me.
+        ** You may copy, redistribute, change and alter my scripts as
+        ** long as this information remains intact.
+        **
+        ** Modified by Josh Hartman on 12/30/2010.
+        */
+        if (($len % 2) !== 0) { // Length paramenter must be a multiple of 2
+            $len = 8;
+        }
+        $conso = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'x', 'z');
+        $vocal = array('a', 'e', 'i', 'o', 'u');
+        $password = '';
+        srand((double)microtime() * 1000000);
+        $max = $len / 2;
+        for ($i = 1; $i <= $max; $i++) {
+            $password .= $conso[rand(0, 18)];
+            $password .= $vocal[rand(0, 4)];
+        }
+        return $password;
+    }
 }
