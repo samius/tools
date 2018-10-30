@@ -70,7 +70,7 @@ class Strings
         return $res;
     }
 
-    public static function randomPassword($len = 8)
+    public static function generatePronounceable($len = 8)
     {
         /* Programmed by Christian Haensel
         ** christian@chftp.com
@@ -82,6 +82,7 @@ class Strings
         ** long as this information remains intact.
         **
         ** Modified by Josh Hartman on 12/30/2010.
+         * Modified by Samius on 10/30/2018
         */
         if (($len % 2) !== 0) { // Length paramenter must be a multiple of 2
             $len = 8;
