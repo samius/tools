@@ -70,7 +70,12 @@ class Strings
         return $res;
     }
 
-    public static function generatePronounceable($len = 8)
+    /**
+     * Returns pronounceable string of given length
+     * @param int $len has to be a multiple of 2
+     * @return string
+     */
+    public static function generatePronounceable(int $len = 8):string
     {
         /* Programmed by Christian Haensel
         ** christian@chftp.com
@@ -85,12 +90,12 @@ class Strings
          * Modified by Samius on 10/30/2018
         */
         if (($len % 2) !== 0) { // Length paramenter must be a multiple of 2
-            $len = 8;
+            $len++;
         }
         $conso = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'x', 'z');
         $vocal = array('a', 'e', 'i', 'o', 'u');
         $password = '';
-        srand((double)microtime() * 1000000);
+        srand((int)((double)microtime() * 1000000));
         $max = $len / 2;
         for ($i = 1; $i <= $max; $i++) {
             $password .= $conso[rand(0, 18)];
