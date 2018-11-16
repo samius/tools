@@ -5,11 +5,14 @@
     "require": {
         "php": ">=7.1"
     },
-    "version": "1.1.4",
+    "version": "1.2",
     "minimum-stability" : "stable",
     "autoload": {
         "psr-0": {
             "Samius": "src/"
         }
+    },
+    "require-dev": {
+        "codeception/codeception": "^2.5"
     }
 }
