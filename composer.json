@@ -1,11 +1,11 @@
 {
     "license": "MIT",
-    "name": "samius/strings",
-    "description": "String tools",
+    "name": "samius/tools",
+    "description": "Strings, Math, Bitmaps, Email, Url simple tools",
     "require": {
         "php": ">=7.1"
     },
-    "version": "1.3",
+    "version": "1.4",
     "minimum-stability" : "stable",
     "autoload": {
         "psr-0": {
