@@ -31,6 +31,11 @@ class Url
         return self::buildUrlFromParts($urlParts);
     }
 
+    /**
+     * @param string $url
+     * @param string $param
+     * @return string
+     */
     public static function removeQueryParamFromUrl(string $url, string $param): string
     {
         $urlParts = parse_url($url);
@@ -47,6 +52,10 @@ class Url
     }
 
 
+    /**
+     * @param array $urlParts
+     * @return string
+     */
     private static function buildUrlFromParts(array $urlParts): string
     {
         $ret = '';
