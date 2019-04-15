@@ -36,7 +36,7 @@ class Strings
 
         $randstring = '';
         for ($i = 0; $i < $length; $i++) {
-            $randstring .= $chars[rand(0, \count($chars) - 1)];
+            $randstring .= $chars[random_int(0, count($chars) - 1)];
         }
 
         return $randstring;
@@ -95,11 +95,10 @@ class Strings
         $conso = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'x', 'z');
         $vocal = array('a', 'e', 'i', 'o', 'u');
         $password = '';
-        srand((int)((double)microtime() * 1000000));
         $max = $len / 2;
         for ($i = 1; $i <= $max; $i++) {
-            $password .= $conso[rand(0, 18)];
-            $password .= $vocal[rand(0, 4)];
+            $password .= $conso[random_int(0, 18)];
+            $password .= $vocal[random_int(0, 4)];
         }
         return $password;
     }
