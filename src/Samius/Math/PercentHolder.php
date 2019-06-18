@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Samius\Math;
 
+use DivisionByZeroError;
+
 /**
  * Class for calculating percents
  */
@@ -18,6 +20,11 @@ class PercentHolder
     {
         $this->amount = $amount;
         $this->total = $total;
+    }
+
+    public static function create(float $amount = 0, float $total = 0)
+    {
+        return new self($amount, $total);
     }
 
     public function increaseAmount(): PercentHolder
@@ -65,18 +72,33 @@ class PercentHolder
         return $this->total;
     }
 
+    /**
+     * @return float
+     */
     public function getPercent(): float
     {
-        if ((string)$this->getTotal() === (string)0.0) { //can not compare floats with ===
-            if ((string)$this->amount !== (string) 0.0) {
-                throw new \OutOfBoundsException("Can not divide by zero ({$this->amount} / 0)");
+        return self::percent($this->amount, $this->total);
+    }
+
+    /**
+     * @param float $amount
+     * @param float $total
+     * @return float
+     */
+    public static function percent(float $amount, float $total):float
+    {
+        if ((string)$total === (string)0.0) { //can not compare floats with ===
+            if ((string)$amount !== (string)0.0) {
+                throw new DivisionByZeroError("Can not divide by zero ({$amount} / 0)");
             }
             return 0; // 0/0 = 0
         }
-        return 100*$this->getAmount() / $this->getTotal();
+        return 100 * $amount / $total;
     }
 
-
+    /**
+     * @return int
+     */
     public function getRoundPercent(): int
     {
         return (int)round($this->getPercent());
