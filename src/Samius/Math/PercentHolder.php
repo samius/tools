@@ -85,7 +85,7 @@ class PercentHolder
      * @param float $total
      * @return float
      */
-    public static function percent(float $amount, float $total):float
+    public static function percent(float $amount, float $total): float
     {
         if ((string)$total === (string)0.0) { //can not compare floats with ===
             if ((string)$amount !== (string)0.0) {
