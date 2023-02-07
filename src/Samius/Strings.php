@@ -48,7 +48,7 @@ class Strings
      * @param string $text
      * @return string
      */
-    public static function removeDiacritics(string $text):string
+    public static function removeDiacritics(string $text): string
     {
         $transliterator = \Transliterator::create('NFD; [:Nonspacing Mark:] Remove; NFC;');
         return $transliterator->transliterate($text);
@@ -75,7 +75,7 @@ class Strings
      * @param int $len has to be a multiple of 2
      * @return string
      */
-    public static function generatePronounceable(int $len = 8):string
+    public static function generatePronounceable(int $len = 8): string
     {
         /* Programmed by Christian Haensel
         ** christian@chftp.com
@@ -102,4 +102,14 @@ class Strings
         }
         return $password;
     }
+
+    public static function removeBomUtf8(string $s): string
+    {
+        if (substr($s, 0, 3) == chr(hexdec('EF')) . chr(hexdec('BB')) . chr(hexdec('BF'))) {
+            return substr($s, 3);
+        }
+
+        return $s;
+    }
+
 }
