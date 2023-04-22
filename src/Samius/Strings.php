@@ -55,6 +55,19 @@ class Strings
     }
 
     /**
+     * Removes diacritics and converts to lowercase, then replaces all non-alphanumeric characters with dashes
+     */
+    public static function slugify(string $text): string
+    {
+        $withoutDiacritics = self::removeDiacritics(trim($text));
+        $withoutDiacritics = preg_replace('/[^a-zA-Z0-9]/', '-', $withoutDiacritics);
+        $withoutDiacritics = preg_replace('/-+/', '-', $withoutDiacritics);
+
+        return strtolower($withoutDiacritics);
+
+    }
+
+    /**
      * Returns classic lorem ipsum text. If longer text is needed, just increase the multiplier
      * @param int $multiplier
      * @return string
