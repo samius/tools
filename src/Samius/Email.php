@@ -21,33 +21,36 @@ class Email
      * @param int $fixedMaskLength - do not replace every masked letter with * but use fixed number of * between first and last letters
      * @return string
      */
-    public static function maskEmail(string $email, int $first = 2, int $last = 1, int $fixedMaskLength=0): string
+    public static function maskEmail(string $email, int $first = 2, int $last = 1, int $fixedMaskLength = 0): string
     {
-       $mailParts = explode('@', $email);
-       $domainParts = explode('.', $mailParts[1]);
+        if (stristr($email, '@') === false) {
+            return $email;
+        }
+        $mailParts = explode('@', $email);
+        $domainParts = explode('.', $mailParts[1]);
 
-       $mailParts[0] = self::maskPart($mailParts[0], $first, $last, $fixedMaskLength);
-       $domainParts[0] = self::maskPart($domainParts[0], $first, $last, $fixedMaskLength);
-       $mailParts[1] = implode('.', $domainParts);
+        $mailParts[0] = self::maskPart($mailParts[0], $first, $last, $fixedMaskLength);
+        $domainParts[0] = self::maskPart($domainParts[0], $first, $last, $fixedMaskLength);
+        $mailParts[1] = implode('.', $domainParts);
 
-       return implode('@', $mailParts);
+        return implode('@', $mailParts);
     }
 
     private static function maskPart(string $str, int $first, int $last, int $fixedMaskLength): string
     {
-       $len = strlen($str);
-       $toShow = $first + $last;
+        $len = strlen($str);
+        $toShow = $first + $last;
 
-       if ($fixedMaskLength > 0) {
+        if ($fixedMaskLength > 0) {
             $hiddenLettersCount = $fixedMaskLength;
-       } else {
+        } else {
             $hiddenLettersCount = $len - ($len <= $toShow ? 0 : $toShow);
         }
 
 
-       return substr($str, 0, $len <= $toShow ? 0 : $first) .
-           str_repeat('*', $hiddenLettersCount) .
-           substr($str, $len - $last, $len <= $toShow ? 0 : $last);
+        return substr($str, 0, $len <= $toShow ? 0 : $first) .
+            str_repeat('*', $hiddenLettersCount) .
+            substr($str, $len - $last, $len <= $toShow ? 0 : $last);
     }
 
 }
