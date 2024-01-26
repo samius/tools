@@ -124,5 +124,12 @@ class Strings
 
         return $s;
     }
+    
+    public static function countCharactersStripedOfTagsInHtml(string $htmlCode): int
+    {
+        $htmlCode = strip_tags($htmlCode);
+        $htmlCode = preg_replace('/\s+/', '', $htmlCode);
+        return mb_strlen($htmlCode);
+    }
 
 }
